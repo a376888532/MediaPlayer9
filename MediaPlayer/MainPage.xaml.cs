@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
+using Windows.Web.Http;
 
 // https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x804 上介绍了“空白页”项模板
 
@@ -52,6 +53,36 @@ namespace MediaPlayer
 
 
         }
+        private async void Play_Click(object sender, RoutedEventArgs e)
+        {
+            Uri pathUri = new Uri(onlineSrc.Text);
 
+            Player.Source = pathUri;
+
+            Player.Play();
+        }
+        private async void Download_Click(object sender, RoutedEventArgs e)
+        {
+
+            try
+            {
+                var httpClient = new HttpClient();
+                var buffer = await httpClient.GetBufferAsync(new Uri(onlineSrc.Text));
+                var file = await KnownFolders.MusicLibrary.CreateFileAsync("neusong.mp3", CreationCollisionOption.ReplaceExisting);
+                using (var stream = await file.OpenAsync(FileAccessMode.ReadWrite))
+                {
+                    await stream.WriteAsync(buffer);
+                    await stream.FlushAsync();
+                }
+                Uri pathUri = new Uri(onlineSrc.Text);
+                Player.Source = pathUri;
+                Player.Play();
+                return ;
+
+            }
+            catch { }
+            return ;
+
+        }
     }
 }

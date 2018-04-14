@@ -18,14 +18,16 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="100" />
         </Grid.RowDefinitions>
-        <Button 
-            x:Name="Button_GetFile" 
-            Width="200" Height="100" 
-            Content="读取文件" 
-            FontSize="36" 
-            Click="Button_GetFile_Click"  
-            Grid.Column="1" Grid.Row="2" 
-            HorizontalAlignment="Left"/>
+        <TextBox 
+            x:Name="onlineSrc" 
+            PlaceholderText="请输入您想播放的在线音频路径" 
+            Grid.Column="1" 
+            Grid.Row="0" 
+            FontSize="36"
+            
+            HorizontalAlignment="Left" 
+            VerticalAlignment="Top" >
+        </TextBox>
         <TextBlock Name="Head" 
             Grid.Column="0" Grid.Row="0" Width="200" Height="100">
             Player
@@ -41,6 +43,43 @@
                 Height="auto" />
 
         </Grid>
+        <Grid Grid.Column="1" Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200" />
+                <ColumnDefinition Width="20" />
+                <ColumnDefinition Width="200" />
+                <ColumnDefinition Width="20" />
+                <ColumnDefinition Width="200" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Button 
+            x:Name="Button_GetFile" 
+            Width="200" Height="100" 
+            Content="读取文件" 
+            FontSize="36" 
+            Click="Button_GetFile_Click"  
+            Grid.Column="0" Grid.Row="0" 
+            HorizontalAlignment="Left"/>
+            <Button 
+            x:Name="Button_Play" 
+            Width="200" Height="100" 
+            Content="播放" 
+            FontSize="36" 
+            Click="Play_Click"  
+            Grid.Column="2" 
+            HorizontalAlignment="Left"
+                />
+            <Button 
+            x:Name="Button_Download" 
+            Width="200" Height="100" 
+            Content="下载" 
+            FontSize="36" 
+            Click="Download_Click"  
+            Grid.Column="4"  
+            HorizontalAlignment="Left"/>
+
+        </Grid>
+        
     </Grid>
 
 </Page>
